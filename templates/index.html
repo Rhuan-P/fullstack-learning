@@ -4,29 +4,105 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-
     
-    
-    aa
-
+    <!-- <meta http-equiv="refresh" content="1"> -->
     <title>Document</title>
 </head>
-<body class="w-screen h-screen bg-red-100">
-  Para testar a extensão do VS Code e verificar se está tudo correto, você pode seguir as seguintes etapas:
 
-  Certifique-se de ter o VS Code instalado em sua máquina.
-  Abra o VS Code e vá para a View (Visualizar) > Extensions (Extensões).
-  Na barra de pesquisa, digite @ext:live-preview para pesquisar a sua extensão local. Certifique-se de incluir o prefixo @ext: antes do nome da extensão.
-  Se a sua extensão não aparecer na lista de resultados, tente reiniciar o VS Code. Você pode pressionar Ctrl + Shift + P (ou Cmd + Shift + P no macOS) para abrir a paleta de comandos, digitar "Developer: Reload Window" e pressionar Enter para reiniciar o VS Code.
-  Após o VS Code reiniciar, você deverá ver a sua extensão na lista de extensões instaladas. Clique no botão "Install" (Instalar) para instalar a extensão localmente.
-  Após a instalação, reinicie o VS Code para ativar a extensão.
-  Agora você pode abrir o arquivo package.json da sua extensão e clicar no botão "Open Preview" (Abrir Pré-Visualização) no menu de contexto. A extensão deve executar a lógica específica para abrir a pré-visualização e exibir a URL no status da extensão.
-  Para verificar se tudo está correto na sua extensão, você pode seguir estas etapas:
-  
-  Verifique se o arquivo package.json da sua extensão está presente no diretório correto. Certifique-se de que o arquivo package.json esteja presente no diretório raiz da sua extensão.
-  Verifique se o arquivo extension.js da sua extensão está presente no diretório correto. Certifique-se de que o arquivo extension.js esteja presente no diretório raiz da sua extensão.
-  Verifique se o arquivo urlUtils.js da sua extensão está presente no diretório correto. Certifique-se de que o arquivo urlUtils.js esteja presente no diretório utils dentro do diretório raiz da sua extensão.
-  Verifique se o arquivo README.md da sua extensão está presente no diretório correto. Certifique-se de que o arquivo README.md esteja presente no diretório raiz da sua extensão.
-  Verifique se o arquivo package.json da sua extensão está configurado corretamente. Certifique-se de que o arquivo package.json defina corretamente o nome, a versão, a descrição, os motores suportados, os eventos de ativação, o arquivo principal, os comandos e as palavras-chave.
+<body class="w-screen h-screen bg-red-100 ">
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- <meta http-equiv="refresh" content="1"> -->
+    <title>Document</title>
+</head>
+
+<body class="w-screen h-screen bg-red-100 ">
+
+
+
+<table class=" m-auto ">
+    <thead>
+        <tr>
+            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden sm:table-cell">Product Name</th>
+            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden sm:table-cell">Price</th>
+            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden sm:table-cell">Status</th>
+            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden sm:table-cell">Actions</th>
+        </tr>
+    </thead>
+
+    {% for product in products %}
+    <tbody>
+        <tr class="bg-white sm:hover:bg-gray-100 flex sm:table-row flex-row sm:flex-row flex-wrap sm:flex-no-wrap mb-10 sm:mb-0">
+            <td class="w-full sm:w-auto p-3 text-gray-800 text-center border border-b block sm:table-cell relative sm:static">
+                <span class="sm:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Product</span>
+                {{product.name}}
+            </td>
+            <td class="w-full sm:w-auto p-3 text-gray-800 text-center border border-b  block sm:table-cell relative sm:static">
+                <span class="sm:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Price</span>
+                {{product.price}}
+            </td>
+          	<td class="w-full sm:w-auto p-3 text-gray-800 text-center border border-b  block sm:table-cell relative sm:static">
+                
+                {% if product.validity == 'valid' %}
+                    <span class="rounded-3xl py-1 px-3 text-xs font-bold bg-teal-300">Valid</span>
+                {% else %}
+                    <span class="rounded-3xl py-1 px-3 text-xs font-bold bg-rose-400">Expired</span>
+                {% endif %}
+          	</td>
+            <td class="w-full sm:w-auto p-3 text-gray-800 text-center border border-b  block sm:table-cell relative sm:static">
+                <span class="sm:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
+                <button class="rounded-full py-1 px-3 text-xs font-bold bg-blue-300">
+                  Editar 
+                </button>
+                
+                <button class="rounded-full py-1 px-3 text-xs font-bold bg-red-300"> Excluir</button>
+
+            </td>
+       
+    </tbody>
+    {% endfor %}
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
