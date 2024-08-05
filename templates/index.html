@@ -1,108 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- <meta http-equiv="refresh" content="1"> -->
-    <title>Document</title>
+    <title>Styled Table</title>
 </head>
 
-<body class="w-screen h-screen bg-red-100 ">
 
 
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- <meta http-equiv="refresh" content="1"> -->
-    <title>Document</title>
-</head>
-
-<body class="w-screen h-screen bg-red-100 ">
-
-
-
-<table class=" m-auto ">
-    <thead>
-        <tr>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden sm:table-cell">Product Name</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden sm:table-cell">Price</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden sm:table-cell">Status</th>
-            <th class="p-3 font-bold uppercase bg-gray-200 text-gray-600 border border-gray-300 hidden sm:table-cell">Actions</th>
-        </tr>
-    </thead>
-
-    {% for product in products %}
-    <tbody>
-        <tr class="bg-white sm:hover:bg-gray-100 flex sm:table-row flex-row sm:flex-row flex-wrap sm:flex-no-wrap mb-10 sm:mb-0">
-            <td class="w-full sm:w-auto p-3 text-gray-800 text-center border border-b block sm:table-cell relative sm:static">
-                <span class="sm:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Product</span>
-                {{product.name}}
-            </td>
-            <td class="w-full sm:w-auto p-3 text-gray-800 text-center border border-b  block sm:table-cell relative sm:static">
-                <span class="sm:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Price</span>
-                {{product.price}}
-            </td>
-          	<td class="w-full sm:w-auto p-3 text-gray-800 text-center border border-b  block sm:table-cell relative sm:static">
-                
-                {% if product.validity == 'valid' %}
-                    <span class="rounded-3xl py-1 px-3 text-xs font-bold bg-teal-300">Valid</span>
-                {% else %}
-                    <span class="rounded-3xl py-1 px-3 text-xs font-bold bg-rose-400">Expired</span>
-                {% endif %}
-          	</td>
-            <td class="w-full sm:w-auto p-3 text-gray-800 text-center border border-b  block sm:table-cell relative sm:static">
-                <span class="sm:hidden absolute top-0 left-0 bg-blue-200 px-2 py-1 text-xs font-bold uppercase">Actions</span>
-                <button class="rounded-full py-1 px-3 text-xs font-bold bg-blue-300">
-                  Editar 
-                </button>
-                
-                <button class="rounded-full py-1 px-3 text-xs font-bold bg-red-300"> Excluir</button>
-
-            </td>
-       
-    </tbody>
-    {% endfor %}
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<body class="w-screen h-screen bg-gray-100 flex sm:items-center justify-center p-5 ">
+    <div class=" max-w-lg  w-full max-h-max bg-white rounded-lg shadow-lg sm:overflow-x-auto overflow-x-hidden">
+        <table class="w-full table-auto border-collapse">
+            <thead class="hidden sm:table-header-group">
+                <tr class="bg-gray-800 text-gray-200 border-b border-gray-700">
+                    <th class="p-4 font-semibold uppercase text-left">Product Name</th>
+                    <th class="p-4 font-semibold uppercase text-left">Price</th>
+                    <th class="p-4 font-semibold uppercase text-left">Status</th>
+                    <th class="p-4 font-semibold uppercase text-left">Actions</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for product in products %}
+                <tr class="bg-white gap-50 hover:bg-gray-50 transition-colors duration-300 border-b border-gray-200 flex flex-col sm:table-row sm:flex-row mb-4 sm:mb-0">
+                    <td class="p-4 text-gray-800 text-sm">
+                        <span class="block sm:hidden font-semibold text-teal-600">Product Name</span>
+                        {{ product['name'] }}
+                    </td>
+                    <td class="p-4 text-gray-800 text-sm">
+                        <span class="block sm:hidden font-semibold text-teal-600">Price</span>
+                        {{ product['price'] }}
+                    </td>
+                    <td class="p-4 text-gray-800 text-sm">
+                        <span class="block sm:hidden font-semibold text-teal-600">Status</span>
+                        <div class="flex justify-center w-full sm:justify-start">
+                            <span class="w-full max-w-xs inline-block rounded-full py-1 px-4 text-xs font-semibold text-center text-white {% if product['validity'] == 'valid' %}bg-teal-600{% else %}bg-red-600{% endif %}">
+                                {% if product['validity'] == 'valid' %}Valid{% else %}Expired{% endif %}
+                            </span>
+                        </div>
+                    </td>
+                    <td class="p-4 text-gray-800 text-sm">
+                        <span class="block sm:hidden font-semibold text-teal-600">Actions</span>
+                        <div class="flex space-x-2 justify-center sm:justify-start">
+                            <button class="rounded-full py-1 px-3 text-xs font-semibold bg-purple-600 text-white hover:bg-purple-700 transition-colors duration-300">Edit</button>
+                            <button class="rounded-full py-1 px-3 text-xs font-semibold bg-red-600 text-white hover:bg-red-700 transition-colors duration-300">Delete</button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </body>
-</html>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</body>
 </html>
