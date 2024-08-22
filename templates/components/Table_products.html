@@ -1,4 +1,3 @@
-
 <table class="w-full table-auto border-collapse">
     <thead class="hidden sm:table-header-group">
         <tr class="bg-gray-800 text-gray-200 border-b border-gray-700">
@@ -9,12 +8,13 @@
             <th class="p-4 font-semibold uppercase text-left">Actions</th>
         </tr>
     </thead>
-    <tbody >
+    <tbody>
         {% for product in products %}
 
 
 
-        <tr class="bg-white gap-50 hover:bg-gray-50 transition-colors duration-300 border-b border-gray-200 flex flex-col sm:table-row sm:flex-row mb-4 sm:mb-0">
+        <tr
+            class="bg-white gap-50 hover:bg-gray-50 transition-colors duration-300 border-b border-gray-200 flex flex-col sm:table-row sm:flex-row mb-4 sm:mb-0">
             <td class="p-4 text-gray-800 text-sm">
                 <span class="block sm:hidden font-semibold text-teal-600">ID</span>
                 {{ product['id'] }}
@@ -31,7 +31,8 @@
             <td class="p-4 text-gray-800 text-sm">
                 <span class="block sm:hidden font-semibold text-teal-600">Status</span>
                 <div class="flex justify-center w-full sm:justify-start">
-                    <span class="w-full max-w-xs inline-block rounded-full py-1 px-4 text-xs font-semibold text-center text-white {% if product['validity'] == 'valid' %}bg-teal-600{% else %}bg-red-600{% endif %}">
+                    <span
+                        class="w-full max-w-xs inline-block rounded-full py-1 px-4 text-xs font-semibold text-center text-white {% if product['validity'] == 'valid' %}bg-teal-600{% else %}bg-red-600{% endif %}">
                         {% if product['validity'] == 'valid' %}Valid{% else %}Expired{% endif %}
                     </span>
                 </div>
@@ -39,12 +40,28 @@
             <td class="p-4 text-gray-800 text-sm">
                 <span class="block sm:hidden font-semibold text-teal-600">Actions</span>
                 <div class="flex space-x-2 justify-center sm:justify-start">
+                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" @click="deleteProduct('{{ product.id }}')">Delete</button>
                     
-                    <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full" >Delete</button>
-                     
+                    <script>
+                    import axios from 'axios';
+                    
+                    function deleteProduct(id) {
+                      var url = '{{ url_for("delete_product", id=1) }}'.replace(1, id);
+                      axios.delete(url)
+                        .then(response => {
+                          console.log(response.data);
+                        })
+                        .catch(error => {
+                          console.error(error);
+                        });
+                    }
+                    </script>
                 </div>
             </td>
+
+
         </tr>
         {% endfor %}
     </tbody>
+
 </table>

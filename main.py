@@ -17,8 +17,13 @@ def register():
 
 @app.route("/delete_product/<int:id>", methods=["DELETE"])
 def delete_product(id):
+    # Delete the product with the given ID
+    # ...
+    return jsonify({"message": "Product deleted successfully"}), 204
+@app.route("/delete_product")
+def delete_products(id):
     
-    return (request.form)
+    return 'get'
 
 
 
